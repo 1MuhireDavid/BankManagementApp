@@ -1,6 +1,7 @@
 package account;
 
 import customer.Customer;
+import customer.PremiumCustomer;
 
 public class CheckingAccount extends Account{
     private double overdraftLimit;
@@ -15,12 +16,17 @@ public class CheckingAccount extends Account{
 
     @Override
     public void displayAccountDetails() {
+        System.out.println();
         System.out.println("Account #:       " + getAccountNumber());
         System.out.println("Customer:        " + getCustomer());
-        System.out.println("Balance:         $" + getBalance());
-        System.out.println("Overdraft Limit: $" + overdraftLimit);
-        System.out.println("Monthly Fee:     $" + monthlyFee);
-        System.out.println("Status:          " + getStatus());
+        System.out.println("Balance:         $" + String.format("%.2f", getBalance()));
+        System.out.println("Overdraft Limit: $" + String.format("%.2f", overdraftLimit));
+        if (getCustomer() instanceof PremiumCustomer) {
+            System.out.println("  Monthly Fee:    $0.00 (WAIVED - PREMIUM)");
+        } else {
+            System.out.println("  Monthly Fee:    $" + String.format("%.2f", monthlyFee));
+        }
+        System.out.println("  Status:         " + getStatus());
     }
 
     @Override
@@ -37,20 +43,24 @@ public class CheckingAccount extends Account{
     }
 
     @Override
-    public void withdraw(double amount){
-      if(amount <= getBalance() + overdraftLimit){
-          setBalance(getBalance() - amount);
-          System.out.println("Withdrawn: $"+ amount);
-      }else {
-          System.out.println("Withdraw denied: exceeds overdraft limit");
-      }
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Withdrawal failed: amount must be positive.");
+        } else if (amount <= getBalance() + overdraftLimit) {
+            setBalance(getBalance() - amount);
+            System.out.println("Withdrawn: $" + String.format("%.2f", amount));
+        } else {
+            System.out.println("Withdraw denied: exceeds overdraft limit.");
+        }
     }
 
-     void applyMonthlyFee(){
-        double newBalance = getBalance() - monthlyFee;
-        setBalance(newBalance);
-        System.out.println("Monthly fee of $" + monthlyFee + " applied.");
+    public void applyMonthlyFee() {
+        if (getCustomer() instanceof PremiumCustomer) {
+            System.out.println("Monthly fee waived for premium customer.");
+            return;
+        }
+        setBalance(getBalance() - monthlyFee);
+        System.out.println("Monthly fee of $" + String.format("%.2f", monthlyFee) + " applied.");
     }
-
 
 }

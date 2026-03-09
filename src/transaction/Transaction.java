@@ -23,6 +23,10 @@ public class Transaction {
         this.timestamp = dtf.format(LocalDateTime.now());
     }
 
+    public String getTransactionId() {
+        return transactionId;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -72,13 +76,13 @@ public class Transaction {
         }
         System.out.println("TRANSACTION CONFIRMATION");
         System.out.println("+-----------------------------------------+");
-        System.out.println("| %-21s |\\n\",Transaction ID: "+ transactionId);
-        System.out.println("| %-21s |\\n\",Account: "+ accountNumber);
-        System.out.println("| %-21s |\\n\",Type: "+type);
-        System.out.println("| %-21s |\\n\",Amount: $"+ amount);
-        System.out.println("| %-21s |\\n\",Previous Balance: "+ previousBalance);
-        System.out.println("| %-21s |\\n\",New Balance: "+ balanceAfter);
-        System.out.println("| %-21s |\\n\",Date/Time: "+ timestamp);
-        System.out.println("+-----------------------+");
+        System.out.printf("| %-20s: %-17s |%n", "Transaction ID", transactionId);
+        System.out.printf("| %-20s: %-17s |%n", "Account", accountNumber);
+        System.out.printf("| %-20s: %-17s |%n", "Type", type);
+        System.out.printf("| %-20s: $%-16.2f |%n", "Amount", amount);
+        System.out.printf("| %-20s: $%-16.2f |%n", "Previous Balance", previousBalance);
+        System.out.printf("| %-20s: $%-16.2f |%n", "New Balance", balanceAfter);
+        System.out.printf("| %-20s: %-17s |%n", "Date/Time", timestamp);
+        System.out.println("+-----------------------------------------+");
     }
 }

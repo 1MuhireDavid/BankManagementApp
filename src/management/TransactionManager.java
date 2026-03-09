@@ -32,14 +32,9 @@ public class TransactionManager {
 
         boolean found = false;
 
-        for (Transaction transaction : transactions) {
-
-            if (transaction == null) {
-                continue;
-            }
-
-            if (transaction.getAccountNumber().equals(accountNumber)) {
-                transaction.displayTransactionDetails();
+        for (int i = 0; i < transactionCount; i++) {
+            if (transactions[i].getAccountNumber().equals(accountNumber)) {
+                transactions[i].displayTransactionDetails();
                 found = true;
             }
         }
@@ -47,24 +42,28 @@ public class TransactionManager {
             System.out.println("No transactions found for this account.");
         }
     }
-    public double calculateTotalDeposits(String accountNumber){
+    public double calculateTotalDeposits(String accountNumber) {
         double depositSum = 0.0;
-        for(Transaction transaction: transactions){
-            if(transaction.getAccountNumber().equals(accountNumber)&& transaction.getType().equals("deposit")){
-                depositSum++;
+        for (int i = 0; i < transactionCount; i++) {
+            if (transactions[i].getAccountNumber().equals(accountNumber)
+                    && transactions[i].getType().equalsIgnoreCase("Deposit")) {
+                depositSum += transactions[i].getAmount();
             }
         }
         return depositSum;
     }
-    public double calculateTotalWithdrawals(String accountNumber){
-        double withDrawSum = 0.0;
-        for(Transaction transaction: transactions){
-            if(transaction.getAccountNumber().equals(accountNumber)&& transaction.getType().equals("withdraw")){
-                withDrawSum++;
+
+    public double calculateTotalWithdrawals(String accountNumber) {
+        double withdrawSum = 0.0;
+        for (int i = 0; i < transactionCount; i++) {
+            if (transactions[i].getAccountNumber().equals(accountNumber)
+                    && transactions[i].getType().equalsIgnoreCase("Withdrawal")) {
+                withdrawSum += transactions[i].getAmount();
             }
         }
-        return withDrawSum;
+        return withdrawSum;
     }
+
     public int getTransactionCount(){
         return transactionCount;
     }

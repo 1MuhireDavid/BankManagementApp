@@ -11,7 +11,7 @@ public class RegularCustomer extends Customer {
         return "Regular";
     }
     @Override
-    void displayCustomerDetails() {
+    public void displayCustomerDetails() {
         System.out.println("==== Regular Customer ====");
         System.out.println("Customer name:  "+ getName());
         System.out.println("Customer age:  "+ getAge());

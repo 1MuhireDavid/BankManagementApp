@@ -20,12 +20,12 @@ public class SavingsAccount extends Account {
         DecimalFormat df = new DecimalFormat("#.##");
         System.out.println();
         System.out.println("Account :       " + getAccountNumber());
-        //TODO: ADD PROPER WAY OF GETTING CUSTOMER NAME NOT THIS customer.PremiumCustomer@548c4f57
         System.out.println("Customer:        " + getCustomer().getName());
-        System.out.println("Balance:         $" + getBalance());
+        System.out.println("Account Type:     Savings");
+        System.out.println("Balance:         $" + String.format("%.2f", getBalance()));
         System.out.println("Status:           "+ getStatus());
         System.out.println("Interest Rate:    "+ df.format(this.interestRate *100) + "%");
-        System.out.println("Min Balance:   "+ this.minimumBalance);
+        System.out.println("Min Balance:   "+ String.format("%.2f", minimumBalance));
     }
 
     @Override
@@ -42,18 +42,23 @@ public class SavingsAccount extends Account {
     }
 
     @Override
-    public void withdraw(double amount){
-        if(amount> getBalance()){
-            System.out.println("Withdraw denied not enough money");
-        }else{
-           super.withdraw(amount);
-            System.out.println("Withdraw successfully");
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Withdrawal failed: amount must be positive.");
+        } else if (amount > getBalance()) {
+            System.out.println("Withdraw denied: not enough funds.");
+        } else if (getBalance() - amount < minimumBalance) {
+            System.out.println("Withdraw denied: balance cannot go below minimum $" + String.format("%.2f", minimumBalance));
+        } else {
+            setBalance(getBalance() - amount);
+            System.out.println("Withdrawn: $" + String.format("%.2f", amount));
         }
     }
 
-    double calculateInterest(){
+
+    public double calculateInterest() {
         double interest = getBalance() * interestRate;
-        System.out.println("Interest earned $ "+ interest);
+        System.out.println("Interest earned: $" + String.format("%.2f", interest));
         return interest;
     }
 }

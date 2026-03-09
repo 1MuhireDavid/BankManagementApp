@@ -1,14 +1,15 @@
 package account;
 
 import customer.Customer;
+import transaction.Transactable;
 
-public abstract class Account {
+public abstract class Account implements Transactable {
     private String accountNumber;
     private Customer customer;
     private double balance;
     private String status;
 
-    private static int  accountCounter = 0;
+    private static int accountCounter = 0;
 
     public Account() {
     }
@@ -51,23 +52,50 @@ public abstract class Account {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public abstract void displayAccountDetails();
     public abstract String getAccountType();
 
-    public void deposit (double amount){
+    public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.println("deposit: $" + amount);
-        }else {
-            System.out.println("Deposit failed");
+            System.out.println("Deposited: $" + String.format("%.2f", amount));
+        } else {
+            System.out.println("Deposit failed: amount must be positive.");
         }
     }
+
     public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            System.out.println("Withdrawn: $" + amount);
-        } else {
+        if (amount <= 0) {
+            System.out.println("Withdrawal failed: amount must be positive.");
+        } else if (amount > balance) {
             System.out.println("Insufficient funds or invalid amount.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawn: $" + String.format("%.2f", amount));
+        }
+    }
+
+    @Override
+    public boolean processTransaction(double amount, String type) {
+        if (amount <= 0) {
+            System.out.println("Invalid transaction amount.");
+            return false;
+        }
+        switch (type.toLowerCase()) {
+            case "deposit" -> {
+                deposit(amount);
+                return true;
+            }
+            case "withdrawal" -> {
+                double before = balance;
+                withdraw(amount);
+                return balance < before;
+            }
+            default -> {
+                System.out.println("Unknown transaction type: " + type);
+                return false;
+            }
         }
     }
 }

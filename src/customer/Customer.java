@@ -7,17 +7,22 @@ public abstract class Customer {
     private String contact;
     private String address;
 
-    static int customerCounter;
+    static int customerCounter = 0;
     public Customer(){}
 
     public Customer(String name, int age, String contact, String address) {
+        this.customerId = "CUST" + String.format("%03d", ++customerCounter);
         this.name = name;
         this.age = age;
         this.contact = contact;
         this.address = address;
     }
-    abstract void displayCustomerDetails();
-    abstract String getCustomerType();
+    public abstract void displayCustomerDetails();
+    public abstract String getCustomerType();
+
+    public String getCustomerId() {
+        return customerId;
+    }
 
     public String getName() {
         return name;

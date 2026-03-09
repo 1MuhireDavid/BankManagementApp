@@ -23,7 +23,7 @@ public class PremiumCustomer extends Customer {
     }
 
     @Override
-    void displayCustomerDetails() {
+    public void displayCustomerDetails() {
         System.out.println("==== Premium Customer  ====");
         System.out.println("Customer name:  "+ getName());
         System.out.println("Customer age:  "+ getAge());
