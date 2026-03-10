@@ -1,6 +1,6 @@
-package account;
+package com.bank.account;
 
-import customer.Customer;
+import com.bank.customer.Customer;
 
 import java.text.DecimalFormat;
 

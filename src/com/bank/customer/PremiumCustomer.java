@@ -1,4 +1,4 @@
-package customer;
+package com.bank.customer;
 
 public class PremiumCustomer extends Customer {
 

@@ -1,7 +1,7 @@
-package account;
+package com.bank.account;
 
-import customer.Customer;
-import customer.PremiumCustomer;
+import com.bank.customer.Customer;
+import com.bank.customer.PremiumCustomer;
 
 public class CheckingAccount extends Account{
     private double overdraftLimit;
@@ -18,7 +18,7 @@ public class CheckingAccount extends Account{
     public void displayAccountDetails() {
         System.out.println();
         System.out.println("Account #:       " + getAccountNumber());
-        System.out.println("Customer:        " + getCustomer());
+        System.out.println("Customer:        " + getCustomer().getName());
         System.out.println("Balance:         $" + String.format("%.2f", getBalance()));
         System.out.println("Overdraft Limit: $" + String.format("%.2f", overdraftLimit));
         if (getCustomer() instanceof PremiumCustomer) {
@@ -46,9 +46,11 @@ public class CheckingAccount extends Account{
     public void withdraw(double amount) {
         if (amount <= 0) {
             System.out.println("Withdrawal failed: amount must be positive.");
+            return;
         } else if (amount <= getBalance() + overdraftLimit) {
             setBalance(getBalance() - amount);
             System.out.println("Withdrawn: $" + String.format("%.2f", amount));
+            return;
         } else {
             System.out.println("Withdraw denied: exceeds overdraft limit.");
         }
@@ -56,7 +58,7 @@ public class CheckingAccount extends Account{
 
     public void applyMonthlyFee() {
         if (getCustomer() instanceof PremiumCustomer) {
-            System.out.println("Monthly fee waived for premium customer.");
+            System.out.println("Monthly fee waived for premium com.bank.customer.");
             return;
         }
         setBalance(getBalance() - monthlyFee);

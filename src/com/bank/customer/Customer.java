@@ -1,4 +1,4 @@
-package customer;
+package com.bank.customer;
 
 public abstract class Customer {
     private String customerId;
@@ -11,7 +11,7 @@ public abstract class Customer {
     public Customer(){}
 
     public Customer(String name, int age, String contact, String address) {
-        this.customerId = "CUST" + String.format("%03d", ++customerCounter);
+        this.customerId = "CUS" + String.format("%03d", ++customerCounter);
         this.name = name;
         this.age = age;
         this.contact = contact;

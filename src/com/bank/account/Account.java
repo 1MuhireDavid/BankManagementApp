@@ -1,7 +1,7 @@
-package account;
+package com.bank.account;
 
-import customer.Customer;
-import transaction.Transactable;
+import com.bank.customer.Customer;
+import com.bank.transaction.Transactable;
 
 public abstract class Account implements Transactable {
     private String accountNumber;

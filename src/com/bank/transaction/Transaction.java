@@ -1,4 +1,4 @@
-package transaction;
+package com.bank.transaction;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,16 +10,16 @@ public class Transaction {
     private double amount;
     private double balanceAfter;
     private String timestamp;
-    static int transactionCounter = 1000;
+    static int transactionCounter = 0;
 
     public Transaction(String accountNumber, String type, double amount, double balanceAfter) {
-        this.transactionId = "TXN"+ (++transactionCounter);
+        this.transactionId = String.format("TXN%03d", ++transactionCounter);
         this.accountNumber = accountNumber;
         this.type = type;
         this.amount = amount;
         this.balanceAfter = balanceAfter;
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm a");
         this.timestamp = dtf.format(LocalDateTime.now());
     }
 
@@ -67,22 +67,21 @@ public class Transaction {
         this.timestamp = timestamp;
     }
 
-    public void displayTransactionDetails(){
-        double previousBalance;
-        if(type.equals("Deposit")){
-            previousBalance = balanceAfter - amount;
-        } else {
-            previousBalance = balanceAfter + amount;
-        }
-        System.out.println("TRANSACTION CONFIRMATION");
-        System.out.println("+-----------------------------------------+");
-        System.out.printf("| %-20s: %-17s |%n", "Transaction ID", transactionId);
-        System.out.printf("| %-20s: %-17s |%n", "Account", accountNumber);
-        System.out.printf("| %-20s: %-17s |%n", "Type", type);
-        System.out.printf("| %-20s: $%-16.2f |%n", "Amount", amount);
-        System.out.printf("| %-20s: $%-16.2f |%n", "Previous Balance", previousBalance);
-        System.out.printf("| %-20s: $%-16.2f |%n", "New Balance", balanceAfter);
-        System.out.printf("| %-20s: %-17s |%n", "Date/Time", timestamp);
-        System.out.println("+-----------------------------------------+");
+    public void displayTransactionDetails() {
+        double previousBalance = type.equalsIgnoreCase("Deposit")
+                ? balanceAfter - amount
+                : balanceAfter + amount;
+
+        String line = "-".repeat(44);
+        System.out.println("\nTRANSACTION CONFIRMATION");
+        System.out.println(line);
+        System.out.printf("  %-20s: %s%n",        "Transaction ID",  transactionId);
+        System.out.printf("  %-20s: %s%n",        "Account",         accountNumber);
+        System.out.printf("  %-20s: %s%n",        "Type",            type.toUpperCase());
+        System.out.printf("  %-20s: $%,.2f%n",    "Amount",          amount);
+        System.out.printf("  %-20s: $%,.2f%n",    "Previous Balance", previousBalance);
+        System.out.printf("  %-20s: $%,.2f%n",    "New Balance",     balanceAfter);
+        System.out.printf("  %-20s: %s%n",        "Date/Time",       timestamp);
+        System.out.println(line);
     }
 }
