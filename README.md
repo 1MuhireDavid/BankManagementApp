@@ -85,7 +85,8 @@ BankAccountManagement/
 
 
 ### Screenshot 7: View Transaction History  
-<img width="712" height="463" alt="Screenshot 2026-03-10 154842" src="https://github.com/user-attachments/assets/a74c2278-2e0e-4af8-9110-6dc976101db3" />
+<img width="742" height="480" alt="image" src="https://github.com/user-attachments/assets/f8c056a1-94c4-468b-9a0c-6f8bd4abdb6f" />
+
 
 ### Screenshot 8: Exit with a (Good Bye message)
 <img width="472" height="59" alt="Screenshot 2026-03-10 154906" src="https://github.com/user-attachments/assets/4cc0f004-9693-420b-9924-f41757e557dc" />
