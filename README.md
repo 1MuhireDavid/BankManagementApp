@@ -77,10 +77,12 @@ BankAccountManagement/
 <img width="680" height="550" alt="Screenshot 2026-03-10 154324" src="https://github.com/user-attachments/assets/6a08dc14-66c9-4ed4-a580-1ba8a23c47ac" />
 
 ### Screenshot 5: Process Transaction (Deposit)
-<img width="566" height="834" alt="Screenshot 2026-03-10 154547" src="https://github.com/user-attachments/assets/ff48b011-5a5f-4d39-865a-3b967933bee4" />
+<img width="540" height="701" alt="Screenshot 2026-03-11 122934" src="https://github.com/user-attachments/assets/c7b54ae5-124d-4d17-93de-d9f4a3078659" />
+
 
 ### Screenshot 6: Process Transaction (Withdrawal)
-<img width="678" height="817" alt="Screenshot 2026-03-10 154637" src="https://github.com/user-attachments/assets/42f76a7a-a8e5-42ca-be63-2cb5749d28a4" />
+<img width="642" height="701" alt="image" src="https://github.com/user-attachments/assets/a229c8da-8b0b-43a8-a2f2-5cba3cb1ea39" />
+
 
 ### Screenshot 7: View Transaction History  
 <img width="712" height="463" alt="Screenshot 2026-03-10 154842" src="https://github.com/user-attachments/assets/a74c2278-2e0e-4af8-9110-6dc976101db3" />
