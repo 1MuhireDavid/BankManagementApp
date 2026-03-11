@@ -199,11 +199,11 @@ public class MenuHandler {
     }
 
     private void seedDefaultAccounts() {
-        aManager.addAccount(new SavingsAccount(new RegularCustomer("Alice Johnson", 34, "555-1001", "101 Maple St"), 1500.00));
-        aManager.addAccount(new SavingsAccount(new PremiumCustomer("Bob Smith",     45, "555-1002", "202 Oak Ave"),  5000.00));
-        aManager.addAccount(new SavingsAccount(new RegularCustomer("Carol White",   28, "555-1003", "303 Pine Rd"),  800.00));
-        aManager.addAccount(new CheckingAccount(new PremiumCustomer("David Brown",  52, "555-1004", "404 Elm Blvd"), 500.00));
-        aManager.addAccount(new CheckingAccount(new RegularCustomer("Eva Davis",    39, "555-1005", "505 Cedar Ln"), 1200.00));
+        aManager.addAccount(new SavingsAccount(new RegularCustomer("Kwizera James", 34, "0788320831", "kk 143 st"), 1500.00));
+        aManager.addAccount(new SavingsAccount(new PremiumCustomer("Mugabo Denis",     45, "0733320831", "Nyagatare"),  5000.00));
+        aManager.addAccount(new SavingsAccount(new RegularCustomer("Hirwa Jesse",   28, "0799320831", "Bugesera"),  800.00));
+        aManager.addAccount(new CheckingAccount(new PremiumCustomer("Igabe Rich",  52, "0784220831", "Gasabo"), 500.00));
+        aManager.addAccount(new CheckingAccount(new RegularCustomer("Agaba James",    39, "0723320831", "kk 123 st"), 1200.00));
     }
 }
 
